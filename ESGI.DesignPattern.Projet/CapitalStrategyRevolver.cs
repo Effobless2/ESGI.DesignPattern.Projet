@@ -10,7 +10,7 @@
 
         private double UnusedRiskFactorFor()
         {
-            return UnusedRiskFactors.GetFactors().ForRating();
+            return RiskFactors.Unused;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ESGI.DesignPattern.Projet
 
         protected double RiskFactorFor()
         {
-            return RiskFactor.GetFactors().ForRating();
+            return RiskFactors.Basic;
         }
 
         public virtual double Duration(Loan loan)
@@ -22,6 +22,7 @@ namespace ESGI.DesignPattern.Projet
         protected double YearsTo(DateTime? endDate, Loan loan)
         {
             DateTime? beginDate = (loan.Today.HasValue ? loan.Today : loan.Start);
+            //return new DateTime(endDate.Value.Subtract(beginDate.Value).Ticks).Year - 1; // To ask
             return (double)((endDate?.Ticks - beginDate?.Ticks) / MILLIS_PER_DAY / DAYS_PER_YEAR);
         }
     }

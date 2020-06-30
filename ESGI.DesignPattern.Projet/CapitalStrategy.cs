@@ -9,14 +9,9 @@ namespace ESGI.DesignPattern.Projet
 
         public abstract double Capital(Loan loan);
 
-        protected double RiskFactorFor(Loan loan)
+        protected double RiskFactorFor()
         {
-            return RiskFactor.GetFactors().ForRating(loan.GetRiskRating());
-        }
-
-        private double UnusedRiskFactorFor(Loan loan)
-        {
-            return UnusedRiskFactors.GetFactors().ForRating(loan.GetRiskRating());
+            return RiskFactor.GetFactors().ForRating();
         }
 
         public virtual double Duration(Loan loan)

@@ -12,7 +12,7 @@
             return new UnusedRiskFactors();
         }
 
-        public double ForRating(double riskRating)
+        public double ForRating()
         {
             return 0.01;
         }

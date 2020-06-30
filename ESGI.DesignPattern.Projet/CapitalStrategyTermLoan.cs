@@ -7,7 +7,7 @@ namespace ESGI.DesignPattern.Projet
 
         public override double Capital(Loan loan)
         {
-            return loan.GetCommitment() * Duration(loan) * RiskFactorFor();
+            return loan.Commitment * Duration(loan) * RiskFactorFor();
         }
 
         public override double Duration(Loan loan)
@@ -21,13 +21,13 @@ namespace ESGI.DesignPattern.Projet
             double weightedAverage = 0.0;
             double sumOfPayments = 0.0;
 
-            foreach (var payment in loan.Payments())
+            foreach (var payment in loan.Payments)
             {
                 sumOfPayments += payment.Amount;
                 weightedAverage += YearsTo(payment.Date, loan) * payment.Amount;
             }
 
-            if (Math.Abs(loan.GetCommitment()) > EPSILON)
+            if (Math.Abs(loan.Commitment) > EPSILON)
             {
                 duration = weightedAverage / sumOfPayments;
             }

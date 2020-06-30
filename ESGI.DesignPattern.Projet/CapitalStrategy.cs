@@ -16,12 +16,12 @@ namespace ESGI.DesignPattern.Projet
 
         public virtual double Duration(Loan loan)
         {
-            return YearsTo(loan.GetExpiry(), loan);
+            return YearsTo(loan.Expiry, loan);
         }
 
         protected double YearsTo(DateTime? endDate, Loan loan)
         {
-            DateTime? beginDate = (loan.GetToday() == null ? loan.GetStart() : loan.GetToday());
+            DateTime? beginDate = (loan.Today.HasValue ? loan.Today : loan.Start);
             return (double)((endDate?.Ticks - beginDate?.Ticks) / MILLIS_PER_DAY / DAYS_PER_YEAR);
         }
     }

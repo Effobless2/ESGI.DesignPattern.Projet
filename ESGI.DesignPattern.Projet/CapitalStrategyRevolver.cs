@@ -4,7 +4,7 @@
     {
         public override double Capital(Loan loan)
         {
-            return (loan.OutstandingRiskAmount() * Duration(loan) * RiskFactorFor())
+            return (loan.Outstanding * Duration(loan) * RiskFactorFor())
                         + (loan.UnusedRiskAmount() * Duration(loan) * UnusedRiskFactorFor());
         }
 

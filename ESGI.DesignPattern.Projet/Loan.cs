@@ -14,7 +14,7 @@ namespace ESGI.DesignPattern.Projet
         public readonly DateTime? Today;
         public readonly DateTime Start;
         public readonly double RiskRating;
-        public double UnusedPercentage { get; set; }
+        public readonly double UnusedPercentage;
         private readonly CapitalStrategy capitalStrategy;
 
         public double Commitment { get; }
@@ -39,8 +39,6 @@ namespace ESGI.DesignPattern.Projet
             Outstanding = outstanding;
         }
 
-        
-
         public void Payment(double amount, DateTime paymentDate)
         {
             Payments.Add(new Payment(amount, paymentDate));
@@ -54,6 +52,11 @@ namespace ESGI.DesignPattern.Projet
         public double UnusedRiskAmount()
         {
             return Commitment - Outstanding;
+        }
+
+        public double Duration()
+        {
+            return capitalStrategy.Duration(this);
         }
     }
 }

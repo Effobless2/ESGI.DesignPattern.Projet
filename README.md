@@ -20,3 +20,6 @@ Cela permet de pouvoir tester les dates sans avoir à changer la date du système.
 Dans les tests, on instanciait un Loan avec une stratégie spécifique mais cette dernière n'était jamais utilisée. 
 Pour tester Capital et Duration de ce loan via cette stratégie, on instanciait une nouvelle instance de la stratégie du Loan.
 On a alors ajouté la fonction Duration() à Loan qui appelle alors strategy.Duration(this), de même pour Capital().
+
+## Phase 5
+  - Mise en place d'un enum pour la création du type de Loan

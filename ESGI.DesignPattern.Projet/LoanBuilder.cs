@@ -27,7 +27,26 @@ namespace ESGI.DesignPattern.Projet
             );
         }
 
-        public static Loan NewRevolver(double commitment, DateTime start, DateTime expiry, int riskRating)
+        public static Loan Create(double commitment, DateTime start, DateTime end, int riskRating, StrategyEnum strategy)
+        {
+            Loan loan = null;
+            switch (strategy)
+            {
+                case StrategyEnum.AvisedLine:
+                    if (riskRating <= 3)
+                        loan = NewAdvisedLine(commitment, start, end, riskRating);
+                    break;
+                case StrategyEnum.Revolver:
+                    loan = NewRevolver(commitment, start, end, riskRating);
+                    break;
+                case StrategyEnum.Term:
+                    loan = NewTermLoan(commitment, start, end, riskRating);
+                    break;
+            }
+            return loan;
+        }
+
+        private static Loan NewRevolver(double commitment, DateTime start, DateTime expiry, int riskRating)
         {
             return new LoanBuilder()
                 .WithCommitment(commitment)
@@ -40,7 +59,7 @@ namespace ESGI.DesignPattern.Projet
                 .Build();
         }
 
-        public static Loan NewAdvisedLine(double commitment, DateTime start, DateTime expiry, int riskRating)
+        private static Loan NewAdvisedLine(double commitment, DateTime start, DateTime expiry, int riskRating)
         {
             if (riskRating > 3)
                 return null;
@@ -56,7 +75,7 @@ namespace ESGI.DesignPattern.Projet
                 .Build();
         }
 
-        public static Loan NewTermLoan(double commitment, DateTime start, DateTime maturity, int riskRating)
+        private static Loan NewTermLoan(double commitment, DateTime start, DateTime maturity, int riskRating)
         {
             return new LoanBuilder()
                 .WithCommitment(commitment)
